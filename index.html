@@ -3,186 +3,160 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clineraclinic | Medical Certificate Request</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>VividMedi | Instant Medical Certificates</title>
+  <meta name="description" content="VividMedi connects Australians to AHPRA-registered doctors for instant medical certificates and telehealth consultations. Get help when you need it most.">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --primary-color: #615eff;
-      --accent-color: #00b3ff;
-      --bg-light: #f8f9fb;
-      --text-dark: #1e1e2f;
-      --border-light: #e4e7f0;
-      --transition-speed: 0.3s;
-    }
-
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
-      background: var(--bg-light);
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
     }
-
-    #clineraclinic-flow {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg-light);
-      color: var(--text-dark);
-      max-width: 600px;
-      margin: 40px auto;
-      padding: 40px;
-      border-radius: 14px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    body {
+      background-color: #f7f9fb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
     }
-
-    .logo-text {
-      text-align: center;
-      font-family: 'Great Vibes', cursive;
-      font-size: 48px;
-      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: 500;
-      margin-bottom: 15px;
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 8px;
-      background: var(--border-light);
-      border-radius: 4px;
-      overflow: hidden;
-      margin: 25px 0 35px;
-    }
-
-    .progress-fill {
-      width: 12.5%;
-      height: 100%;
-      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-      border-radius: 4px;
-      transition: width var(--transition-speed) ease-in-out;
-    }
-
-    h2 {
-      text-align: center;
-      font-size: 22px;
-      margin-bottom: 10px;
-    }
-
-    .note {
-      text-align: center;
-      color: #666;
-      font-size: 14px;
-      margin-bottom: 25px;
-    }
-
-    form label {
-      display: block;
-      font-weight: 600;
-      margin: 20px 0 10px;
-    }
-
-    .radio-group {
+    .form-container {
       background: #fff;
-      border: 1px solid var(--border-light);
-      border-radius: 10px;
-      padding: 20px;
-    }
-
-    .radio-option {
-      margin-bottom: 15px;
-      font-size: 16px;
-    }
-
-    .radio-option input {
-      accent-color: var(--primary-color);
-      margin-right: 10px;
-      transform: scale(1.2);
-    }
-
-    .continue-btn {
-      display: block;
       width: 100%;
-      margin-top: 30px;
-      padding: 15px;
-      font-size: 18px;
+      max-width: 480px;
+      padding: 40px 32px;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+    .brand-name {
+      font-size: 2.4rem;
+      text-align: center;
       font-weight: 600;
-      border: none;
-      border-radius: 10px;
-      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-      color: white;
-      cursor: pointer;
-      transition: transform var(--transition-speed);
+      margin-bottom: 24px;
+      color: #222;
     }
-
-    .continue-btn:hover {
-      transform: scale(1.02);
+    .brand-name span {
+      color: #4AA7FF;
     }
-
-    .step-section {
+    .progress-wrapper {
+      background: #eaeaea;
+      border-radius: 6px;
+      height: 6px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      background: linear-gradient(to right, #4AA7FF, #7BE8D9);
+      width: 25%;
+      height: 6px;
+      transition: width 0.3s ease;
+    }
+    h2 {
+      font-size: 1.3rem;
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    p {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 24px;
+    }
+    .form-section {
       display: none;
+      animation: fadeIn 0.4s ease;
     }
-
-    .step-active {
+    .form-section.active {
       display: block;
-      animation: fadeIn 0.4s ease-in-out;
     }
-
+    .form-group {
+      margin-bottom: 24px;
+    }
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: #333;
+    }
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .continue-btn {
+      background: linear-gradient(to right, #4AA7FF, #7BE8D9);
+      border: none;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      width: 100%;
+      padding: 14px 0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+    .continue-btn:hover {
+      opacity: 0.9;
+    }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
-
 <body>
-  <div id="clineraclinic-flow">
-    <div class="logo-text">Clineraclinic</div>
-    <div class="progress-bar"><div class="progress-fill" id="progress-bar"></div></div>
+  <div class="form-container">
+    <h1 class="brand-name">Vivid<span>Medi</span></h1>
 
-    <!-- STEP 1 -->
-    <div id="step1" class="step-section step-active">
-      <h2>Medical Certificate Request</h2>
-      <p class="note">
-        Please note: Our AHPRA-registered doctors will review your request and determine the appropriate outcome.
-      </p>
-
-      <form id="form-step1">
-        <label>I am seeking *</label>
-        <div class="radio-group">
-          <div class="radio-option"><input type="radio" name="seeking" value="Sick Leave" checked> Sick Leave</div>
-          <div class="radio-option"><input type="radio" name="seeking" value="Carer's Leave"> Carer’s Leave</div>
-        </div>
-
-        <label>This leave is from *</label>
-        <div class="radio-group">
-          <div class="radio-option"><input type="radio" name="leaveFrom" value="Work" checked> Work</div>
-          <div class="radio-option"><input type="radio" name="leaveFrom" value="Studies"> Studies</div>
-          <div class="radio-option"><input type="radio" name="leaveFrom" value="Other"> Other</div>
-        </div>
-
-        <button type="button" class="continue-btn" data-next="2">Continue</button>
-      </form>
+    <div class="progress-wrapper">
+      <div class="progress-bar"></div>
     </div>
 
-    <!-- STEP 2 -->
-    <div id="step2" class="step-section">
-      <h2>What is the main reason for this leave?</h2>
-      <p class="note">Tell your doctor what’s wrong — this helps them understand your condition.</p>
+    <!-- Step 1 -->
+    <div class="form-section step-1 active">
+      <h2>Medical Certificate Request</h2>
+      <p>Please note: Our AHPRA-registered doctors will review your request and determine the appropriate outcome.</p>
 
-      <form id="form-step2">
+      <div class="form-group">
+        <label>I am seeking *</label>
         <div class="radio-group">
-          <div class="radio-option"><input type="radio" name="reason" value="Common cold or flu" checked> Common cold or flu</div>
-          <div class="radio-option"><input type="radio" name="reason" value="Headache"> Headache</div>
-          <div class="radio-option"><input type="radio" name="reason" value="Migraine"> Migraine</div>
-          <div class="radio-option"><input type="radio" name="reason" value="Back pain"> Back pain</div>
-          <div class="radio-option"><input type="radio" name="reason" value="Period pain"> Period pain</div>
-          <div class="radio-option"><input type="radio" name="reason" value="Anxiety, stress or depression"> Anxiety, stress or depression</div>
-          <div class="radio-option"><input type="radio" name="reason" value="Other"> Other</div>
+          <label><input type="radio" name="leaveType" value="Sick Leave" checked> Sick Leave</label>
+          <label><input type="radio" name="leaveType" value="Carer's Leave"> Carer's Leave</label>
         </div>
+      </div>
 
-        <button type="button" class="continue-btn" data-next="3">Continue</button>
-      </form>
+      <div class="form-group">
+        <label>This leave is from *</label>
+        <div class="radio-group">
+          <label><input type="radio" name="leaveFrom" value="Work" checked> Work</label>
+          <label><input type="radio" name="leaveFrom" value="Studies"> Studies</label>
+          <label><input type="radio" name="leaveFrom" value="Other"> Other</label>
+        </div>
+      </div>
+
+      <button class="continue-btn">Continue</button>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="form-section step-2">
+      <h2>Leave Details</h2>
+      <p>Please provide information about your leave duration.</p>
+
+      <div class="form-group">
+        <label>From *</label>
+        <input type="date" id="fromDate" class="input-field" required>
+      </div>
+
+      <div class="form-group">
+        <label>To *</label>
+        <input type="date" id="toDate" class="input-field" required>
+      </div>
+
+      <button class="continue-btn">Continue</button>
     </div>
   </div>
 
-  <!-- Link external JavaScript -->
-  <script src="clineraclinic-flow.js"></script>
+  <script src="vividmedi-flow.js"></script>
 </body>
 </html>
