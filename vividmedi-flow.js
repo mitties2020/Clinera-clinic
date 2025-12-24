@@ -1,23 +1,21 @@
-document.addEventListener("DOMContentLoaded", function () {
-  let currentStep = 1;
-  const totalSteps = 8;
-  const progressBar = document.getElementById("progress-bar");
+// vividmedi-flow.js
+document.addEventListener("DOMContentLoaded", () => {
+  const continueBtn = document.querySelector(".continue-btn");
+  const step1 = document.querySelector(".step-1");
+  const step2 = document.querySelector(".step-2");
+  const progressBar = document.querySelector(".progress-bar");
 
-  document.querySelectorAll(".continue-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const next = parseInt(btn.dataset.next);
-      const currentEl = document.getElementById(`step${currentStep}`);
-      const nextEl = document.getElementById(`step${next}`);
+  if (!continueBtn || !step1 || !step2) return;
 
-      if (nextEl) {
-        currentEl.classList.remove("step-active");
-        nextEl.classList.add("step-active");
-        currentStep = next;
-
-        const progress = (next / totalSteps) * 100;
-        progressBar.style.width = progress + "%";
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-    });
+  continueBtn.addEventListener("click", () => {
+    // Hide step 1
+    step1.style.display = "none";
+    // Show step 2
+    step2.style.display = "block";
+    // Update progress bar
+    if (progressBar) {
+      progressBar.style.width = "50%";
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
 });
