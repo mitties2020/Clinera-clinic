@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clineraclinic | Medical Certificate Request</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #615eff;
+      --accent-color: #00b3ff;
+      --bg-light: #f8f9fb;
+      --text-dark: #1e1e2f;
+      --border-light: #e4e7f0;
+      --transition-speed: 0.3s;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg-light);
+    }
+
+    #clineraclinic-flow {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 40px;
+      border-radius: 14px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .logo-text {
+      text-align: center;
+      font-family: 'Great Vibes', cursive;
+      font-size: 48px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: var(--border-light);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 25px 0 35px;
+    }
+
+    .progress-fill {
+      width: 12.5%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      border-radius: 4px;
+      transition: width var(--transition-speed) ease-in-out;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .note {
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    form label {
+      display: block;
+      font-weight: 600;
+      margin: 20px 0 10px;
+    }
+
+    .radio-group {
+      background: #fff;
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .radio-option {
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+
+    .radio-option input {
+      accent-color: var(--primary-color);
+      margin-right: 10px;
+      transform: scale(1.2);
+    }
+
+    .continue-btn {
+      display: block;
+      width: 100%;
+      margin-top: 30px;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      color: white;
+      cursor: pointer;
+      transition: transform var(--transition-speed);
+    }
+
+    .continue-btn:hover {
+      transform: scale(1.02);
+    }
+
+    .step-section {
+      display: none;
+    }
+
+    .step-active {
+      display: block;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="clineraclinic-flow">
+    <div class="logo-text">Clineraclinic</div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-bar"></div></div>
+
+    <!-- STEP 1 -->
+    <div id="step1" class="step-section step-active">
+      <h2>Medical Certificate Request</h2>
+      <p class="note">
+        Please note: Our AHPRA-registered doctors will review your request and determine the appropriate outcome.
+      </p>
+
+      <form id="form-step1">
+        <label>I am seeking *</label>
+        <div class="radio-group">
+          <div class="radio-option"><input type="radio" name="seeking" value="Sick Leave" checked> Sick Leave</div>
+          <div class="radio-option"><input type="radio" name="seeking" value="Carer's Leave"> Carer’s Leave</div>
+        </div>
+
+        <label>This leave is from *</label>
+        <div class="radio-group">
+          <div class="radio-option"><input type="radio" name="leaveFrom" value="Work" checked> Work</div>
+          <div class="radio-option"><input type="radio" name="leaveFrom" value="Studies"> Studies</div>
+          <div class="radio-option"><input type="radio" name="leaveFrom" value="Other"> Other</div>
+        </div>
+
+        <button type="button" class="continue-btn" data-next="2">Continue</button>
+      </form>
+    </div>
+
+    <!-- STEP 2 -->
+    <div id="step2" class="step-section">
+      <h2>What is the main reason for this leave?</h2>
+      <p class="note">Tell your doctor what’s wrong — this helps them understand your condition.</p>
+
+      <form id="form-step2">
+        <div class="radio-group">
+          <div class="radio-option"><input type="radio" name="reason" value="Common cold or flu" checked> Common cold or flu</div>
+          <div class="radio-option"><input type="radio" name="reason" value="Headache"> Headache</div>
+          <div class="radio-option"><input type="radio" name="reason" value="Migraine"> Migraine</div>
+          <div class="radio-option"><input type="radio" name="reason" value="Back pain"> Back pain</div>
+          <div class="radio-option"><input type="radio" name="reason" value="Period pain"> Period pain</div>
+          <div class="radio-option"><input type="radio" name="reason" value="Anxiety, stress or depression"> Anxiety, stress or depression</div>
+          <div class="radio-option"><input type="radio" name="reason" value="Other"> Other</div>
+        </div>
+
+        <button type="button" class="continue-btn" data-next="3">Continue</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Link external JavaScript -->
+  <script src="clineraclinic-flow.js"></script>
+</body>
+</html>
