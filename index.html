@@ -19,14 +19,16 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
+      padding: 20px;
     }
     .form-container {
       background: #fff;
       width: 100%;
-      max-width: 480px;
+      max-width: 500px;
       padding: 40px 32px;
       border-radius: 14px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
     }
     .brand-name {
       font-size: 2.4rem;
@@ -42,12 +44,12 @@
       background: #eaeaea;
       border-radius: 6px;
       height: 6px;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       overflow: hidden;
     }
     .progress-bar {
       background: linear-gradient(to right, #4AA7FF, #7BE8D9);
-      width: 25%;
+      width: 33%;
       height: 6px;
       transition: width 0.3s ease;
     }
@@ -84,8 +86,23 @@
       flex-direction: column;
       gap: 8px;
     }
-    .continue-btn {
-      background: linear-gradient(to right, #4AA7FF, #7BE8D9);
+    .input-field, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .button-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    button {
       border: none;
       color: white;
       font-weight: 600;
@@ -96,7 +113,13 @@
       cursor: pointer;
       transition: opacity 0.3s ease;
     }
-    .continue-btn:hover {
+    .back-btn {
+      background: #9daab3;
+    }
+    .continue-btn {
+      background: linear-gradient(to right, #4AA7FF, #7BE8D9);
+    }
+    button:hover {
       opacity: 0.9;
     }
     @keyframes fadeIn {
@@ -135,7 +158,9 @@
         </div>
       </div>
 
-      <button class="continue-btn">Continue</button>
+      <div class="button-row">
+        <button class="continue-btn">Continue</button>
+      </div>
     </div>
 
     <!-- Step 2 -->
@@ -153,10 +178,36 @@
         <input type="date" id="toDate" class="input-field" required>
       </div>
 
-      <button class="continue-btn">Continue</button>
+      <div class="button-row">
+        <button class="back-btn">Back</button>
+        <button class="continue-btn">Continue</button>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="form-section step-3">
+      <h2>Tell Us More</h2>
+      <p>Describe your symptoms and attach any optional documents for our doctors.</p>
+
+      <div class="form-group">
+        <label>Describe your symptoms *</label>
+        <textarea placeholder="e.g. Fever, sore throat, headache..." required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Optional file upload</label>
+        <input type="file" accept=".pdf,.jpg,.jpeg,.png">
+        <small>Upload discharge papers, doctor's letter, or test results (max 10MB).</small>
+      </div>
+
+      <div class="button-row">
+        <button class="back-btn">Back</button>
+        <button class="continue-btn">Proceed to Payment</button>
+      </div>
     </div>
   </div>
 
   <script src="vividmedi-flow.js"></script>
 </body>
 </html>
+
