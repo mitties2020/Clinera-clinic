@@ -6,151 +6,147 @@
   <title>VividMedi | Medical Certificate</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+    * {margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
     body {
-      background-color: #f7f9fb;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 30px;
+      background-color:#f8fafc;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      min-height:100vh;
+      padding:40px 20px;
     }
-    .form-container {
-      background: #fff;
-      width: 100%;
-      max-width: 600px;
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    .header {
+      text-align:center;
+      margin-bottom:20px;
     }
     .brand {
-      text-align: center;
-      font-size: 2.4rem;
-      font-weight: 600;
-      margin-bottom: 24px;
-      color: #1b1b1b;
+      font-size:2.2rem;
+      font-weight:600;
+      color:#1b1b1b;
     }
-    .brand span {
-      color: #4AA7FF;
-    }
+    .brand span {color:#4AA7FF;}
     .progress-wrapper {
-      background: #e0e0e0;
-      border-radius: 10px;
-      height: 8px;
-      margin-bottom: 30px;
-      overflow: hidden;
+      width:100%;
+      max-width:600px;
+      background:#e0e0e0;
+      border-radius:10px;
+      height:8px;
+      overflow:hidden;
+      margin:15px auto 30px;
     }
     .progress-bar {
-      height: 8px;
-      width: 12.5%;
-      background: linear-gradient(to right, #4AA7FF, #7BE8D9);
-      transition: width 0.4s ease;
+      height:8px;
+      width:12.5%;
+      background:linear-gradient(to right,#4AA7FF,#7BE8D9);
+      transition:width 0.4s ease;
     }
-    h2 {
-      text-align: center;
-      font-size: 1.4rem;
-      margin-bottom: 10px;
+    .form-container {
+      background:#fff;
+      width:100%;
+      max-width:600px;
+      padding:40px;
+      border-radius:16px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.1);
+      margin-bottom:50px;
     }
-    p {
-      text-align: center;
-      color: #666;
-      margin-bottom: 25px;
+    .form-section {display:none;animation:fadeIn 0.3s ease;}
+    .form-section.active {display:block;}
+    h2 {text-align:center;font-size:1.4rem;margin-bottom:8px;}
+    p {text-align:center;color:#666;margin-bottom:25px;font-size:0.95rem;}
+    label {font-weight:500;display:block;margin-bottom:6px;}
+    input,select,textarea {
+      width:100%;
+      padding:10px;
+      border:1px solid #ccc;
+      border-radius:6px;
+      font-size:1rem;
     }
-    .form-section {
-      display: none;
-      animation: fadeIn 0.3s ease;
+    textarea {resize:vertical;min-height:80px;}
+    .radio-group {
+      display:flex;
+      flex-direction:column;
+      gap:10px;
     }
-    .form-section.active {
-      display: block;
+    .radio-group label {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:400;
     }
-    .form-group {
-      margin-bottom: 20px;
-    }
-    label {
-      font-weight: 500;
-      display: block;
-      margin-bottom: 8px;
-    }
-    input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-    }
-    textarea {
-      resize: vertical;
-      min-height: 80px;
-    }
-    .radio-group, .checkbox-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
+    input[type="radio"] {accent-color:#4AA7FF;}
     .button-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:20px;
     }
     button {
-      flex: 1;
-      border: none;
-      border-radius: 6px;
-      padding: 14px;
-      font-weight: 600;
-      color: #fff;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: opacity 0.3s ease;
+      flex:1;
+      border:none;
+      border-radius:6px;
+      padding:14px;
+      font-weight:600;
+      color:#fff;
+      font-size:1rem;
+      cursor:pointer;
+      transition:opacity 0.3s ease;
     }
-    .continue-btn {
-      background: linear-gradient(to right, #4AA7FF, #7BE8D9);
-    }
-    .back-btn {
-      background: #9daab3;
-    }
-    button:hover { opacity: 0.9; }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .continue-btn {background:linear-gradient(to right,#4AA7FF,#7BE8D9);}
+    .back-btn {background:#9daab3;}
+    button:hover{opacity:0.9;}
+    @keyframes fadeIn {from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
     .summary-box {
-      background: #f2f6f9;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      font-size: 0.95rem;
+      background:#f2f6f9;
+      padding:15px;
+      border-radius:8px;
+      margin-bottom:20px;
+      border:1px solid #d9e0e7;
     }
-    .payment-placeholder {
-      text-align: center;
-      background: #f2f6f9;
-      padding: 20px;
-      border-radius: 8px;
-      border: 1px dashed #ccc;
+    .certificate-preview {
+      background:#fdfaf6;
+      padding:20px;
+      border-radius:10px;
+      border:1px solid #e2d7c5;
+      color:#333;
+      margin-bottom:20px;
+      font-size:0.95rem;
     }
+    .payment-options {
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin:20px 0;
+    }
+    .payment-option {
+      border:2px solid #ccc;
+      border-radius:10px;
+      padding:15px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      cursor:pointer;
+      transition:border-color 0.3s ease;
+    }
+    .payment-option:hover {border-color:#4AA7FF;}
+    .payment-option.active {border-color:#4AA7FF;background:#f0faff;}
   </style>
 </head>
 <body>
-  <div class="form-container">
+  <div class="header">
     <h1 class="brand">Vivid<span>Medi</span></h1>
-    <div class="progress-wrapper">
-      <div class="progress-bar"></div>
-    </div>
+    <div class="progress-wrapper"><div class="progress-bar"></div></div>
+  </div>
+
+  <div class="form-container">
 
     <!-- Step 1 -->
     <div class="form-section active">
       <h2>Medical Certificate Request</h2>
       <p>Select the type of certificate you require.</p>
-      <div class="form-group">
-        <div class="radio-group">
-          <label><input type="radio" name="certType" value="Sick Leave" checked> Sick Leave</label>
-          <label><input type="radio" name="certType" value="Carer's Leave"> Carer's Leave</label>
-        </div>
+      <div class="radio-group">
+        <label><input type="radio" name="certType" value="Sick Leave" checked> Sick Leave</label>
+        <label><input type="radio" name="certType" value="Carer's Leave"> Carer's Leave</label>
       </div>
       <div class="button-row">
         <button class="continue-btn">Continue</button>
@@ -161,16 +157,14 @@
     <div class="form-section">
       <h2>Reason for Leave</h2>
       <p>Tell your doctor why you need this certificate.</p>
-      <div class="form-group">
-        <div class="radio-group">
-          <label><input type="radio" name="reason" value="Common cold or flu" checked> Common cold or flu</label>
-          <label><input type="radio" name="reason" value="Headache"> Headache</label>
-          <label><input type="radio" name="reason" value="Migraine"> Migraine</label>
-          <label><input type="radio" name="reason" value="Back pain"> Back pain</label>
-          <label><input type="radio" name="reason" value="Period pain"> Period pain</label>
-          <label><input type="radio" name="reason" value="Anxiety, stress or depression"> Anxiety, stress or depression</label>
-          <label><input type="radio" name="reason" value="Other"> Other</label>
-        </div>
+      <div class="radio-group">
+        <label><input type="radio" name="reason" value="Common cold or flu" checked> Common cold or flu</label>
+        <label><input type="radio" name="reason" value="Headache"> Headache</label>
+        <label><input type="radio" name="reason" value="Migraine"> Migraine</label>
+        <label><input type="radio" name="reason" value="Back pain"> Back pain</label>
+        <label><input type="radio" name="reason" value="Period pain"> Period pain</label>
+        <label><input type="radio" name="reason" value="Anxiety, stress or depression"> Anxiety, stress or depression</label>
+        <label><input type="radio" name="reason" value="Other"> Other</label>
       </div>
       <div class="button-row">
         <button class="back-btn">Back</button>
@@ -181,16 +175,10 @@
     <!-- Step 3 -->
     <div class="form-section">
       <h2>Leave Dates</h2>
-      <p>Please select your leave dates (maximum 5 days, within 7 days of today).</p>
-      <div class="form-group">
-        <label>From *</label>
-        <input type="date" id="fromDate" required>
-      </div>
-      <div class="form-group">
-        <label>To *</label>
-        <input type="date" id="toDate" required>
-      </div>
-      <p id="dateError" style="color:red; text-align:center; display:none;"></p>
+      <p>Start date cannot be more than 7 days before today and duration cannot exceed 5 days.</p>
+      <label>From *</label><input type="date" id="fromDate" required>
+      <label>To *</label><input type="date" id="toDate" required>
+      <p id="dateError" style="color:red;text-align:center;display:none;"></p>
       <div class="button-row">
         <button class="back-btn">Back</button>
         <button class="continue-btn">Continue</button>
@@ -200,15 +188,10 @@
     <!-- Step 4 -->
     <div class="form-section">
       <h2>Tell Your Doctor More</h2>
-      <p>Please describe your symptoms and optionally upload relevant files.</p>
-      <div class="form-group">
-        <label>Symptom Details *</label>
-        <textarea placeholder="e.g. Fever, sore throat, tiredness..." required></textarea>
-      </div>
-      <div class="form-group">
-        <label>Upload Files (optional)</label>
-        <input type="file" accept=".pdf,.jpg,.jpeg,.png">
-      </div>
+      <p>Please describe your symptoms and upload any relevant documents.</p>
+      <textarea id="symptoms" placeholder="e.g. Fever, sore throat, fatigue..." required></textarea>
+      <label>Upload Files (optional)</label>
+      <input type="file" accept=".pdf,.jpg,.jpeg,.png">
       <div class="button-row">
         <button class="back-btn">Back</button>
         <button class="continue-btn">Continue</button>
@@ -218,32 +201,15 @@
     <!-- Step 5 -->
     <div class="form-section">
       <h2>Personal Information</h2>
-      <div class="form-group">
-        <label>Email *</label>
-        <input type="email" placeholder="your@email.com" required>
-      </div>
-      <div class="form-group">
-        <label>First Name *</label>
-        <input type="text" required>
-      </div>
-      <div class="form-group">
-        <label>Last Name *</label>
-        <input type="text" required>
-      </div>
-      <div class="form-group">
-        <label>Date of Birth *</label>
-        <input type="date" required>
-      </div>
-      <div class="form-group">
-        <label>Mobile Number *</label>
-        <input type="tel" placeholder="04XXXXXXXX" required>
-      </div>
-      <div class="form-group">
-        <label>Gender *</label>
-        <div class="radio-group">
-          <label><input type="radio" name="gender" value="Male" checked> Male</label>
-          <label><input type="radio" name="gender" value="Female"> Female</label>
-        </div>
+      <label>Email *</label><input type="email" id="email" placeholder="you@email.com" required>
+      <label>First Name *</label><input type="text" id="firstName" required>
+      <label>Last Name *</label><input type="text" id="lastName" required>
+      <label>Date of Birth *</label><input type="date" id="dob" required>
+      <label>Mobile Number *</label><input type="tel" id="mobile" placeholder="04XXXXXXXX" required>
+      <label>Gender *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="gender" value="Male" checked> Male</label>
+        <label><input type="radio" name="gender" value="Female"> Female</label>
       </div>
       <div class="button-row">
         <button class="back-btn">Back</button>
@@ -254,33 +220,16 @@
     <!-- Step 6 -->
     <div class="form-section">
       <h2>Address</h2>
-      <p>Please provide your address information.</p>
-      <div class="form-group">
-        <label>Street Address *</label>
-        <input type="text" required>
-      </div>
-      <div class="form-group">
-        <label>City/Suburb *</label>
-        <input type="text" required>
-      </div>
-      <div class="form-group">
-        <label>State/Territory *</label>
-        <select required>
-          <option value="">Select...</option>
-          <option>New South Wales</option>
-          <option>Victoria</option>
-          <option>Queensland</option>
-          <option>Western Australia</option>
-          <option>South Australia</option>
-          <option>Tasmania</option>
-          <option>Australian Capital Territory</option>
-          <option>Northern Territory</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Postal Code *</label>
-        <input type="text" required>
-      </div>
+      <label>Street Address *</label><input type="text" id="address" required>
+      <label>City/Suburb *</label><input type="text" id="city" required>
+      <label>State/Territory *</label>
+      <select id="state" required>
+        <option value="">Select...</option>
+        <option>New South Wales</option><option>Victoria</option><option>Queensland</option>
+        <option>Western Australia</option><option>South Australia</option>
+        <option>Tasmania</option><option>Australian Capital Territory</option><option>Northern Territory</option>
+      </select>
+      <label>Postal Code *</label><input type="text" id="postcode" required>
       <div class="button-row">
         <button class="back-btn">Back</button>
         <button class="continue-btn">Continue</button>
@@ -290,8 +239,10 @@
     <!-- Step 7 -->
     <div class="form-section">
       <h2>Review Your Details</h2>
-      <p>Please check everything before submission.</p>
-      <div class="summary-box" id="summaryBox">Your details will appear here.</div>
+      <p>Please double check all your details before submission.</p>
+      <div class="certificate-preview" id="certificatePreview"></div>
+      <label>Is there anything else you would like the doctor to know regarding your medical certificate?</label>
+      <textarea id="doctorNote" placeholder="Additional comments..."></textarea>
       <div class="button-row">
         <button class="back-btn">Back</button>
         <button class="continue-btn">Continue</button>
@@ -301,18 +252,22 @@
     <!-- Step 8 -->
     <div class="form-section">
       <h2>Payment</h2>
-      <p>Your information will now be reviewed by an AHPRA-registered doctor. Keep your phone nearby in case we need to clarify details.</p>
-      <div class="payment-placeholder">
-        <p><strong>Pay with Card</strong></p>
-        <p><strong>Pay with Google Pay</strong></p>
-        <p>(Payment integration placeholder)</p>
+      <p>Select the duration of leave to complete your request.</p>
+      <div class="payment-options">
+        <div class="payment-option" data-days="1" data-price="14"><span>1 Day</span><strong>$14 AUD</strong></div>
+        <div class="payment-option" data-days="2" data-price="20"><span>2 Days</span><strong>$20 AUD</strong></div>
+        <div class="payment-option" data-days="3" data-price="25"><span>3 Days</span><strong>$25 AUD</strong></div>
+        <div class="payment-option" data-days="4" data-price="35"><span>4 Days</span><strong>$35 AUD</strong></div>
+        <div class="payment-option" data-days="5" data-price="50"><span>5 Days</span><strong>$50 AUD</strong></div>
       </div>
       <div class="button-row">
         <button class="back-btn">Back</button>
+        <button class="continue-btn">Continue</button>
       </div>
     </div>
 
   </div>
+
   <script src="vividmedi-flow.js"></script>
 </body>
-</html>
+</html
