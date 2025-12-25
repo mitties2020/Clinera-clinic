@@ -3,133 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VividMedi | Medical Certificate</title>
+  <title>VividMedi | Medical Certificate Request</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    * {margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-    body {
-      background-color:#f8fafc;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:flex-start;
-      min-height:100vh;
-      padding:40px 20px;
-    }
-    .header {
-      text-align:center;
-      margin-bottom:20px;
-    }
-    .brand {
-      font-size:2.2rem;
-      font-weight:600;
-      color:#1b1b1b;
-    }
-    .brand span {color:#4AA7FF;}
-    .progress-wrapper {
-      width:100%;
-      max-width:600px;
-      background:#e0e0e0;
-      border-radius:10px;
-      height:8px;
-      overflow:hidden;
-      margin:15px auto 30px;
-    }
-    .progress-bar {
-      height:8px;
-      width:12.5%;
-      background:linear-gradient(to right,#4AA7FF,#7BE8D9);
-      transition:width 0.4s ease;
-    }
-    .form-container {
-      background:#fff;
-      width:100%;
-      max-width:600px;
-      padding:40px;
-      border-radius:16px;
-      box-shadow:0 6px 20px rgba(0,0,0,0.1);
-      margin-bottom:50px;
-    }
-    .form-section {display:none;animation:fadeIn 0.3s ease;}
-    .form-section.active {display:block;}
-    h2 {text-align:center;font-size:1.4rem;margin-bottom:8px;}
-    p {text-align:center;color:#666;margin-bottom:25px;font-size:0.95rem;}
-    label {font-weight:500;display:block;margin-bottom:6px;}
-    input,select,textarea {
-      width:100%;
-      padding:10px;
-      border:1px solid #ccc;
-      border-radius:6px;
-      font-size:1rem;
-    }
-    textarea {resize:vertical;min-height:80px;}
-    .radio-group {
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-    .radio-group label {
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-weight:400;
-    }
-    input[type="radio"] {accent-color:#4AA7FF;}
-    .button-row {
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      margin-top:20px;
-    }
-    button {
-      flex:1;
-      border:none;
-      border-radius:6px;
-      padding:14px;
-      font-weight:600;
-      color:#fff;
-      font-size:1rem;
-      cursor:pointer;
-      transition:opacity 0.3s ease;
-    }
-    .continue-btn {background:linear-gradient(to right,#4AA7FF,#7BE8D9);}
-    .back-btn {background:#9daab3;}
-    button:hover{opacity:0.9;}
-    @keyframes fadeIn {from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-    .summary-box {
-      background:#f2f6f9;
-      padding:15px;
-      border-radius:8px;
-      margin-bottom:20px;
-      border:1px solid #d9e0e7;
-    }
-    .certificate-preview {
-      background:#fdfaf6;
-      padding:20px;
-      border-radius:10px;
-      border:1px solid #e2d7c5;
-      color:#333;
-      margin-bottom:20px;
-      font-size:0.95rem;
-    }
-    .payment-options {
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      margin:20px 0;
-    }
-    .payment-option {
-      border:2px solid #ccc;
-      border-radius:10px;
-      padding:15px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      cursor:pointer;
-      transition:border-color 0.3s ease;
-    }
-    .payment-option:hover {border-color:#4AA7FF;}
-    .payment-option.active {border-color:#4AA7FF;background:#f0faff;}
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+    body{background:#f9fbfc;display:flex;flex-direction:column;align-items:center;padding:40px 15px;}
+    .header{text-align:center;margin-bottom:25px;}
+    .brand{font-size:2.2rem;font-weight:600;color:#111;}
+    .brand span{color:#4AA7FF;}
+    .progress-wrapper{width:100%;max-width:600px;background:#e0e0e0;border-radius:10px;height:8px;margin:15px auto 30px;overflow:hidden;}
+    .progress-bar{height:8px;width:12.5%;background:linear-gradient(to right,#4AA7FF,#7BE8D9);transition:width .4s ease;}
+    .form-container{background:#fff;width:100%;max-width:600px;padding:35px;border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,.1);}
+    h2{text-align:center;font-size:1.4rem;margin-bottom:10px;}
+    p{text-align:center;color:#666;margin-bottom:25px;font-size:.95rem;}
+    .form-section{display:none;animation:fadeIn .3s ease;}
+    .form-section.active{display:block;}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+    .radio-group{display:flex;flex-direction:column;gap:10px;}
+    .radio-option{display:flex;align-items:center;gap:10px;}
+    input[type=radio]{accent-color:#4AA7FF;transform:scale(1.2);}
+    input,select,textarea{width:100%;padding:10px;border:1px solid #ccc;border-radius:6px;font-size:1rem;}
+    textarea{resize:vertical;min-height:80px;}
+    .button-row{display:flex;justify-content:space-between;gap:10px;margin-top:25px;}
+    button{flex:1;padding:14px;border:none;border-radius:6px;font-weight:600;font-size:1rem;color:#fff;cursor:pointer;}
+    .continue-btn{background:linear-gradient(to right,#4AA7FF,#7BE8D9);}
+    .back-btn{background:#9daab3;}
+    .certificate-preview{background:#fffaf3;border:1px solid #e1d3b8;border-radius:10px;padding:20px;margin-bottom:20px;}
+    .payment-options{display:flex;flex-direction:column;gap:10px;margin:20px 0;}
+    .payment-option{border:2px solid #ccc;border-radius:10px;padding:15px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:border-color .3s ease;}
+    .payment-option.active{border-color:#4AA7FF;background:#f0faff;}
+    small.note{display:block;text-align:center;margin-top:15px;color:#666;font-size:.9rem;}
   </style>
 </head>
 <body>
@@ -145,12 +48,15 @@
       <h2>Medical Certificate Request</h2>
       <p>Select the type of certificate you require.</p>
       <div class="radio-group">
-        <label><input type="radio" name="certType" value="Sick Leave" checked> Sick Leave</label>
-        <label><input type="radio" name="certType" value="Carer's Leave"> Carer's Leave</label>
+        <label class="radio-option"><input type="radio" name="certType" value="Sick Leave" checked> Sick Leave</label>
+        <label class="radio-option"><input type="radio" name="certType" value="Carer's Leave"> Carer's Leave</label>
+        <label class="radio-option"><input type="radio" name="certType" value="Other"> Other</label>
       </div>
-      <div class="button-row">
-        <button class="continue-btn">Continue</button>
+      <div id="otherPurposeField" style="display:none;margin-top:10px;">
+        <label>Please specify what this certificate is for:</label>
+        <input type="text" id="otherPurpose" placeholder="e.g. studies, volunteer work">
       </div>
+      <div class="button-row"><button class="continue-btn">Continue</button></div>
     </div>
 
     <!-- Step 2 -->
@@ -158,44 +64,34 @@
       <h2>Reason for Leave</h2>
       <p>Tell your doctor why you need this certificate.</p>
       <div class="radio-group">
-        <label><input type="radio" name="reason" value="Common cold or flu" checked> Common cold or flu</label>
-        <label><input type="radio" name="reason" value="Headache"> Headache</label>
-        <label><input type="radio" name="reason" value="Migraine"> Migraine</label>
-        <label><input type="radio" name="reason" value="Back pain"> Back pain</label>
-        <label><input type="radio" name="reason" value="Period pain"> Period pain</label>
-        <label><input type="radio" name="reason" value="Anxiety, stress or depression"> Anxiety, stress or depression</label>
-        <label><input type="radio" name="reason" value="Other"> Other</label>
+        <label class="radio-option"><input type="radio" name="reason" value="Common cold or flu" checked> Common cold or flu</label>
+        <label class="radio-option"><input type="radio" name="reason" value="Headache"> Headache</label>
+        <label class="radio-option"><input type="radio" name="reason" value="Migraine"> Migraine</label>
+        <label class="radio-option"><input type="radio" name="reason" value="Back pain"> Back pain</label>
+        <label class="radio-option"><input type="radio" name="reason" value="Period pain"> Period pain</label>
+        <label class="radio-option"><input type="radio" name="reason" value="Anxiety, stress or depression"> Anxiety, stress or depression</label>
+        <label class="radio-option"><input type="radio" name="reason" value="Other"> Other</label>
       </div>
-      <div class="button-row">
-        <button class="back-btn">Back</button>
-        <button class="continue-btn">Continue</button>
-      </div>
+      <div class="button-row"><button class="back-btn">Back</button><button class="continue-btn">Continue</button></div>
     </div>
 
     <!-- Step 3 -->
     <div class="form-section">
       <h2>Leave Dates</h2>
-      <p>Start date cannot be more than 7 days before today and duration cannot exceed 5 days.</p>
+      <p>Start date cannot be more than 7 days before today. Duration cannot exceed 5 days.</p>
       <label>From *</label><input type="date" id="fromDate" required>
       <label>To *</label><input type="date" id="toDate" required>
       <p id="dateError" style="color:red;text-align:center;display:none;"></p>
-      <div class="button-row">
-        <button class="back-btn">Back</button>
-        <button class="continue-btn">Continue</button>
-      </div>
+      <div class="button-row"><button class="back-btn">Back</button><button class="continue-btn">Continue</button></div>
     </div>
 
     <!-- Step 4 -->
     <div class="form-section">
       <h2>Tell Your Doctor More</h2>
       <p>Please describe your symptoms and upload any relevant documents.</p>
-      <textarea id="symptoms" placeholder="e.g. Fever, sore throat, fatigue..." required></textarea>
-      <label>Upload Files (optional)</label>
-      <input type="file" accept=".pdf,.jpg,.jpeg,.png">
-      <div class="button-row">
-        <button class="back-btn">Back</button>
-        <button class="continue-btn">Continue</button>
-      </div>
+      <textarea id="symptoms" placeholder="e.g. fever, sore throat..." required></textarea>
+      <label>Upload Files (optional)</label><input type="file" accept=".pdf,.jpg,.jpeg,.png">
+      <div class="button-row"><button class="back-btn">Back</button><button class="continue-btn">Continue</button></div>
     </div>
 
     <!-- Step 5 -->
@@ -208,13 +104,10 @@
       <label>Mobile Number *</label><input type="tel" id="mobile" placeholder="04XXXXXXXX" required>
       <label>Gender *</label>
       <div class="radio-group">
-        <label><input type="radio" name="gender" value="Male" checked> Male</label>
-        <label><input type="radio" name="gender" value="Female"> Female</label>
+        <label class="radio-option"><input type="radio" name="gender" value="Male" checked> Male</label>
+        <label class="radio-option"><input type="radio" name="gender" value="Female"> Female</label>
       </div>
-      <div class="button-row">
-        <button class="back-btn">Back</button>
-        <button class="continue-btn">Continue</button>
-      </div>
+      <div class="button-row"><button class="back-btn">Back</button><button class="continue-btn">Continue</button></div>
     </div>
 
     <!-- Step 6 -->
@@ -224,29 +117,21 @@
       <label>City/Suburb *</label><input type="text" id="city" required>
       <label>State/Territory *</label>
       <select id="state" required>
-        <option value="">Select...</option>
-        <option>New South Wales</option><option>Victoria</option><option>Queensland</option>
-        <option>Western Australia</option><option>South Australia</option>
-        <option>Tasmania</option><option>Australian Capital Territory</option><option>Northern Territory</option>
+        <option value="">Select...</option><option>New South Wales</option><option>Victoria</option><option>Queensland</option>
+        <option>Western Australia</option><option>South Australia</option><option>Tasmania</option><option>ACT</option><option>Northern Territory</option>
       </select>
       <label>Postal Code *</label><input type="text" id="postcode" required>
-      <div class="button-row">
-        <button class="back-btn">Back</button>
-        <button class="continue-btn">Continue</button>
-      </div>
+      <div class="button-row"><button class="back-btn">Back</button><button class="continue-btn">Continue</button></div>
     </div>
 
     <!-- Step 7 -->
     <div class="form-section">
       <h2>Review Your Details</h2>
-      <p>Please double check all your details before submission.</p>
+      <p>Please double check all details before confirming.</p>
       <div class="certificate-preview" id="certificatePreview"></div>
       <label>Is there anything else you would like the doctor to know regarding your medical certificate?</label>
       <textarea id="doctorNote" placeholder="Additional comments..."></textarea>
-      <div class="button-row">
-        <button class="back-btn">Back</button>
-        <button class="continue-btn">Continue</button>
-      </div>
+      <div class="button-row"><button class="back-btn">Back</button><button class="continue-btn">Continue</button></div>
     </div>
 
     <!-- Step 8 -->
@@ -254,20 +139,18 @@
       <h2>Payment</h2>
       <p>Select the duration of leave to complete your request.</p>
       <div class="payment-options">
-        <div class="payment-option" data-days="1" data-price="14"><span>1 Day</span><strong>$14 AUD</strong></div>
+        <div class="payment-option" data-days="1" data-price="15"><span>1 Day</span><strong>$15 AUD</strong></div>
         <div class="payment-option" data-days="2" data-price="20"><span>2 Days</span><strong>$20 AUD</strong></div>
         <div class="payment-option" data-days="3" data-price="25"><span>3 Days</span><strong>$25 AUD</strong></div>
         <div class="payment-option" data-days="4" data-price="35"><span>4 Days</span><strong>$35 AUD</strong></div>
         <div class="payment-option" data-days="5" data-price="50"><span>5 Days</span><strong>$50 AUD</strong></div>
       </div>
-      <div class="button-row">
-        <button class="back-btn">Back</button>
-        <button class="continue-btn">Continue</button>
-      </div>
+      <small class="note">Your information will now be reviewed by an AHPRA-registered doctor. Please keep your phone nearby in case we need to clarify any details.</small>
+      <div class="button-row"><button class="back-btn">Back</button><button class="continue-btn">Continue</button></div>
     </div>
 
   </div>
-
   <script src="vividmedi-flow.js"></script>
 </body>
 </html>
+
