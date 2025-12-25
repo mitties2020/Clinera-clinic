@@ -6,29 +6,34 @@
   <title>VividMedi | Medical Certificate Request</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    * {margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-    body {background:#f9fbfc;display:flex;flex-direction:column;align-items:center;padding:40px 15px;}
-    .header {text-align:center;margin-bottom:25px;}
-    .brand {font-size:2.2rem;font-weight:600;color:#111;}
-    .brand span {color:#4AA7FF;}
-    .progress-wrapper {width:100%;max-width:600px;background:#e0e0e0;border-radius:10px;height:8px;margin:15px auto 30px;overflow:hidden;}
-    .progress-bar {height:8px;width:12.5%;background:linear-gradient(to right,#4AA7FF,#7BE8D9);transition:width .4s ease;}
-    .form-container {background:#fff;width:100%;max-width:600px;padding:35px;border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,.1);}
-    h2 {text-align:center;font-size:1.4rem;margin-bottom:10px;}
-    p {text-align:center;color:#666;margin-bottom:25px;font-size:.95rem;}
-    .form-section {animation:fadeIn .3s ease;}
-    @keyframes fadeIn {from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-    label {display:block;margin:10px 0 5px;font-weight:500;}
-    
-    /* PERFECT alignment for radio buttons */
-    .radio-group {display:grid;grid-template-columns:auto 1fr;row-gap:10px;column-gap:8px;align-items:center;margin-bottom:20px;}
-    .radio-group input[type=radio] {accent-color:#4AA7FF;transform:scale(1.2);}
-    .radio-group label {margin:0;font-weight:400;}
-    
-    input,select,textarea {width:100%;padding:10px;border:1px solid #ccc;border-radius:6px;font-size:1rem;}
-    .button-row {display:flex;justify-content:center;margin-top:25px;}
-    button {padding:14px 40px;border:none;border-radius:6px;font-weight:600;font-size:1rem;color:#fff;cursor:pointer;}
-    .continue-btn {background:linear-gradient(to right,#4AA7FF,#7BE8D9);}
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+    body{background:#f9fbfc;display:flex;flex-direction:column;align-items:center;padding:40px 15px;}
+    .header{text-align:center;margin-bottom:25px;}
+    .brand{font-size:2.2rem;font-weight:600;color:#111;}
+    .brand span{color:#4AA7FF;}
+    .progress-wrapper{width:100%;max-width:600px;background:#e0e0e0;border-radius:10px;height:8px;margin:15px auto 30px;overflow:hidden;}
+    .progress-bar{height:8px;width:12.5%;background:linear-gradient(to right,#4AA7FF,#7BE8D9);transition:width .4s ease;}
+    .form-container{background:#fff;width:100%;max-width:600px;padding:35px;border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,.1);}
+    h2{text-align:center;font-size:1.4rem;margin-bottom:10px;}
+    p{text-align:center;color:#666;margin-bottom:25px;font-size:.95rem;}
+    .form-section{display:none;animation:fadeIn .3s ease;}
+    .form-section.active{display:block;}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+    label{display:block;margin:10px 0 5px;font-weight:500;}
+    .radio-group{display:grid;grid-template-columns:auto 1fr;row-gap:10px;column-gap:8px;align-items:center;margin-bottom:20px;}
+    .radio-group input[type=radio]{accent-color:#4AA7FF;transform:scale(1.2);}
+    .radio-group label{margin:0;font-weight:400;}
+    input,select,textarea{width:100%;padding:10px;border:1px solid #ccc;border-radius:6px;font-size:1rem;}
+    textarea{resize:vertical;min-height:80px;}
+    .button-row{display:flex;justify-content:space-between;gap:10px;margin-top:25px;}
+    button{flex:1;padding:14px;border:none;border-radius:6px;font-weight:600;font-size:1rem;color:#fff;cursor:pointer;}
+    .continue-btn{background:linear-gradient(to right,#4AA7FF,#7BE8D9);}
+    .back-btn{background:#9daab3;}
+    .certificate-preview{background:#fffaf3;border:1px solid #e1d3b8;border-radius:10px;padding:20px;margin-bottom:20px;}
+    .payment-options{display:flex;flex-direction:column;gap:10px;margin:20px 0;}
+    .payment-option{border:2px solid #ccc;border-radius:10px;padding:15px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:border-color .3s ease;}
+    .payment-option.active{border-color:#4AA7FF;background:#f0faff;}
+    small.note{display:block;text-align:center;margin-top:15px;color:#666;font-size:.9rem;}
   </style>
 </head>
 <body>
@@ -37,56 +42,120 @@
     <div class="progress-wrapper"><div class="progress-bar"></div></div>
   </div>
 
-  <div class="form-container" id="step1">
-    <h2>Medical Certificate Request</h2>
-    <p>Please note: The Partner Doctors are currently unable to review requests for fitness for work certificates as part of your consultation outcome.</p>
-    
-    <label>I am seeking *</label>
-    <div class="radio-group">
-      <input type="radio" id="sick" name="certType" value="Sick Leave" checked>
-      <label for="sick">Sick Leave</label>
-      <input type="radio" id="carer" name="certType" value="Carer's Leave">
-      <label for="carer">Carer's Leave</label>
+  <div class="form-container">
+
+    <!-- STEP 1 -->
+    <div class="form-section active" id="step1">
+      <h2>Medical Certificate Request</h2>
+      <p>Please note: The Medical Doctors are currently unable to review requests for fitness for work certificates as part of your consultation outcome.</p>
+      <label>I am seeking *</label>
+      <div class="radio-group">
+        <input type="radio" id="sick" name="certType" value="Sick Leave" checked><label for="sick">Sick Leave</label>
+        <input type="radio" id="carer" name="certType" value="Carer's Leave"><label for="carer">Carer's Leave</label>
+      </div>
+      <label>This leave is from *</label>
+      <div class="radio-group">
+        <input type="radio" id="work" name="leaveFrom" value="Work" checked><label for="work">Work</label>
+        <input type="radio" id="studies" name="leaveFrom" value="Studies"><label for="studies">Studies</label>
+        <input type="radio" id="other" name="leaveFrom" value="Other"><label for="other">Other</label>
+      </div>
+      <div id="otherLeaveField" style="display:none;margin-top:10px;">
+        <label>Please specify what this leave is for:</label>
+        <input type="text" id="otherLeave" placeholder="e.g. training, volunteer work">
+      </div>
+      <div class="button-row"><button class="continue-btn">Continue</button></div>
     </div>
 
-    <label>This leave is from *</label>
-    <div class="radio-group">
-      <input type="radio" id="work" name="leaveFrom" value="Work" checked>
-      <label for="work">Work</label>
-      <input type="radio" id="studies" name="leaveFrom" value="Studies">
-      <label for="studies">Studies</label>
-      <input type="radio" id="other" name="leaveFrom" value="Other">
-      <label for="other">Other</label>
+    <!-- STEP 2 -->
+    <div class="form-section">
+      <h2>Reason for Leave</h2>
+      <p>Tell your doctor why you need this certificate.</p>
+      <div class="radio-group">
+        <input type="radio" name="reason" value="Common cold or flu" checked><label>Common cold or flu</label>
+        <input type="radio" name="reason" value="Headache"><label>Headache</label>
+        <input type="radio" name="reason" value="Migraine"><label>Migraine</label>
+        <input type="radio" name="reason" value="Back pain"><label>Back pain</label>
+        <input type="radio" name="reason" value="Period pain"><label>Period pain</label>
+        <input type="radio" name="reason" value="Anxiety, stress or depression"><label>Anxiety, stress or depression</label>
+        <input type="radio" name="reason" value="Other"><label>Other</label>
+      </div>
+      <div class="button-row"><button class="back-btn">Back</button><button class="continue-btn">Continue</button></div>
     </div>
 
-    <div id="otherLeaveField" style="display:none;margin-top:10px;">
-      <label>Please specify what this leave is for:</label>
-      <input type="text" id="otherLeave" placeholder="e.g. training, volunteer work">
+    <!-- STEP 3 -->
+    <div class="form-section">
+      <h2>Personal Information</h2>
+      <label>Email *</label><input type="email" id="email" required>
+      <label>First Name *</label><input type="text" id="firstName" required>
+      <label>Last Name *</label><input type="text" id="lastName" required>
+      <label>Date of Birth *</label><input type="date" id="dob" required>
+      <label>Mobile Number *</label><input type="tel" id="mobile" placeholder="04XXXXXXXX" required>
+      <label>Gender *</label>
+      <div class="radio-group">
+        <input type="radio" name="gender" value="Male" checked><label>Male</label>
+        <input type="radio" name="gender" value="Female"><label>Female</label>
+      </div>
+      <div class="button-row"><button class="back-btn">Back</button><button class="continue-btn">Continue</button></div>
     </div>
 
-    <div class="button-row">
-      <button class="continue-btn" id="continueBtn">Continue</button>
+    <!-- STEP 4 -->
+    <div class="form-section">
+      <h2>Address</h2>
+      <label>Street Address *</label><input type="text" id="address" required>
+      <label>City/Suburb *</label><input type="text" id="city" required>
+      <label>State *</label><select id="state" required>
+        <option value="">Select...</option>
+        <option>NSW</option><option>VIC</option><option>QLD</option><option>WA</option><option>SA</option><option>TAS</option><option>ACT</option><option>NT</option>
+      </select>
+      <label>Postcode *</label><input type="text" id="postcode" required>
+      <div class="button-row"><button class="back-btn">Back</button><button class="continue-btn">Continue</button></div>
     </div>
+
+    <!-- STEP 5 -->
+    <div class="form-section">
+      <h2>Leave Dates</h2>
+      <p>Start date cannot be more than 7 days before today. Duration cannot exceed 5 days.</p>
+      <label>From *</label><input type="date" id="fromDate" required>
+      <label>To *</label><input type="date" id="toDate" required>
+      <p id="dateError" style="color:red;text-align:center;display:none;"></p>
+      <div class="button-row"><button class="back-btn">Back</button><button class="continue-btn">Continue</button></div>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="form-section">
+      <h2>Tell Your Doctor More</h2>
+      <p>Please describe your symptoms and upload any relevant documents.</p>
+      <textarea id="symptoms" placeholder="e.g. fever, sore throat, fatigue..."></textarea>
+      <label>Upload Files (optional)</label><input type="file" accept=".pdf,.jpg,.jpeg,.png">
+      <div class="button-row"><button class="back-btn">Back</button><button class="continue-btn">Continue</button></div>
+    </div>
+
+    <!-- STEP 7 -->
+    <div class="form-section">
+      <h2>Review Your Details</h2>
+      <p>Please review your details before proceeding to payment.</p>
+      <div class="certificate-preview" id="certificatePreview"></div>
+      <label>Is there anything else you would like the doctor to know?</label>
+      <textarea id="doctorNote" placeholder="Additional notes..."></textarea>
+      <div class="button-row"><button class="back-btn">Back</button><button class="continue-btn">Continue</button></div>
+    </div>
+
+    <!-- STEP 8 -->
+    <div class="form-section">
+      <h2>Payment</h2>
+      <p>Select your certificate duration to complete the request.</p>
+      <div class="payment-options">
+        <div class="payment-option" data-days="1" data-price="15"><span>1 Day</span><strong>$15 AUD</strong></div>
+        <div class="payment-option" data-days="2" data-price="20"><span>2 Days</span><strong>$20 AUD</strong></div>
+        <div class="payment-option" data-days="3" data-price="25"><span>3 Days</span><strong>$25 AUD</strong></div>
+        <div class="payment-option" data-days="4" data-price="35"><span>4 Days</span><strong>$35 AUD</strong></div>
+        <div class="payment-option" data-days="5" data-price="50"><span>5 Days</span><strong>$50 AUD</strong></div>
+      </div>
+      <small class="note">Your information will now be reviewed by an AHPRA-registered medical doctor. Please keep your phone nearby in case we need to clarify any details.</small>
+      <div class="button-row"><button class="back-btn">Back</button><button class="continue-btn">Submit</button></div>
+    </div>
+
   </div>
-
-  <script>
-    const otherLeaveRadio = document.getElementById("other");
-    const otherLeaveField = document.getElementById("otherLeaveField");
-    otherLeaveRadio.addEventListener("change", () => {
-      otherLeaveField.style.display = "block";
-    });
-    document.querySelectorAll("input[name='leaveFrom']").forEach(radio => {
-      if (radio.id !== "other") {
-        radio.addEventListener("change", () => {
-          otherLeaveField.style.display = "none";
-        });
-      }
-    });
-
-    // Temporary "continue" click handler for testing
-    document.getElementById("continueBtn").addEventListener("click", () => {
-      alert("Step 1 complete ✅ — Navigation will continue when Step 2 is added.");
-    });
-  </script>
+  <script src="vividmedi-flow.js"></script>
 </body>
 </html>
