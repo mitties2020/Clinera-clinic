@@ -80,15 +80,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  document.querySelectorAll(".payment-option").forEach(opt => {
-    opt.addEventListener("click", () => {
-      document.querySelectorAll(".payment-option").forEach(o => o.classList.remove("active"));
-      opt.classList.add("active");
-    });
+  // Show Step 9 (Success) after clicking Submit
+  document.getElementById("submitBtn").addEventListener("click", e => {
+    e.preventDefault();
+    currentStep = 8;
+    showStep(currentStep);
   });
 
-  // Toggle other field visibility
-  const otherLeaveRadio = document.getElementById("other");
+  // Toggle Other field
   const otherLeaveField = document.getElementById("otherLeaveField");
   document.querySelectorAll("input[name='leaveFrom']").forEach(radio => {
     radio.addEventListener("change", () => {
