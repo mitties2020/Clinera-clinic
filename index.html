@@ -3,82 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <title>VividMedi - Medical Certificate Request</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f9ff;
-      color: #222;
-      text-align: center;
-      padding: 40px;
-    }
-    form {
-      background: #fff;
-      padding: 25px;
-      margin: auto;
-      width: 320px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    input, button {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-    }
-    button {
-      background: #005bab;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #0072d0;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h2>VividMedi Medical Certificate Request</h2>
-  <form id="medForm">
-    <input id="firstName" placeholder="First Name" required>
-    <input id="lastName" placeholder="Last Name" required>
-    <input id="email" placeholder="Email" type="email" required>
-    <input id="reason" placeholder="Reason for certificate" required>
-    <input id="fromDate" type="date" required>
-    <input id="toDate" type="date" required>
-    <button type="submit">Submit Request</button>
-  </form>
+  <header>
+    <h1>VividMedi</h1>
+    <p>Request a Medical Certificate Online</p>
+  </header>
 
-  <p id="response" style="margin-top: 15px; font-weight: bold;"></p>
+  <div class="form-container">
+    <div id="progressBar"><div id="progress"></div></div>
 
-  <script>
-    document.getElementById("medForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const data = {
-        firstName: document.getElementById("firstName").value,
-        lastName: document.getElementById("lastName").value,
-        email: document.getElementById("email").value,
-        reason: document.getElementById("reason").value,
-        fromDate: document.getElementById("fromDate").value,
-        toDate: document.getElementById("toDate").value
-      };
+    <form id="multiStepForm">
+      <!-- STEP 1 -->
+      <div class="form-step active">
+        <h2>Step 1: Patient Information</h2>
+        <input type="text" id="firstName" placeholder="First Name" required>
+        <input type="text" id="lastName" placeholder="Last Name" required>
+        <input type="email" id="email" placeholder="Email Address" required>
+        <button type="button" class="next-btn">Continue</button>
+      </div>
 
-      try {
-        const res = await fetch("https://vividmedi-backend.onrender.com/api/submit", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
-        });
-        const json = await res.json();
-        document.getElementById("response").innerText = json.message || "✅ Submitted successfully!";
-      } catch (err) {
-        document.getElementById("response").innerText = "❌ Submission failed. Please try again later.";
-        console.error(err);
-      }
-    });
-  </script>
+      <!-- STEP 2 -->
+      <div class="form-step">
+        <h2>Step 2: Reason for Certificate</h2>
+        <label><input type="radio" name="reason" value="Sick Leave" required> Sick Leave</label>
+        <label><input type="radio" name="reason" value="Carer’s Leave"> Carer’s Leave</label>
+        <label><input type="radio" name="reason" value="Other"> Other</label>
+        <input type="text" id="otherReason" placeholder="If other, describe reason..." style="display:none;">
+        <div class="button-row">
+          <button type="button" class="prev-btn">Back</button>
+          <button type="button" class="next-btn">Continue</button>
+        </div>
+      </div>
 
+      <!-- STEP 3 -->
+      <div class="form-step">
+        <h2>Step 3: Leave Duration</h2>
+        <label>From:</label>
+        <input type="date" id="fromDate" required>
+        <label>To:</label>
+        <input type="date" id="toDate" required>
+        <p class="note">You can only request certificates for dates within the past 7 days and up to 5 days duration.</p>
+        <div class="button-row">
+          <button type="button" class="prev-btn">Back</button>
+          <button type="button" class="next-btn">Continue</button>
+        </div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="form-step">
+        <h2>Step 4: Confirm Details</h2>
+        <p>Please review your details before submitting.</p>
+        <div id="summary"></div>
+        <div class="button-row">
+          <button type="button" class="prev-btn">Back</button>
+          <button type="submit" class="submit-btn">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <footer>
+    <p>© 2025 VividMedi Health | Secure Telehealth Certificates</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
