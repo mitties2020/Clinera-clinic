@@ -20,8 +20,15 @@
     .form-section.active{display:block;}
     @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
     label{display:block;margin:10px 0 5px;font-weight:500;}
-    .radio-section{margin-bottom:20px;}
-    .radio-group{display:flex;flex-direction:column;gap:8px;margin-top:5px;}
+    .radio-section{margin-bottom:25px;}
+    .radio-group{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      row-gap:10px;
+      column-gap:8px;
+      align-items:center;
+      margin-bottom:20px;
+    }
     .radio-group input[type=radio]{accent-color:#4AA7FF;transform:scale(1.2);}
     .radio-group label{margin:0;font-weight:400;}
     input,select,textarea{width:100%;padding:10px;border:1px solid #ccc;border-radius:6px;font-size:1rem;}
@@ -55,25 +62,17 @@
       <div class="radio-section">
         <label>I am seeking *</label>
         <div class="radio-group">
-          <input type="radio" id="sick" name="certType" value="Sick Leave" checked>
-          <label for="sick">Sick Leave</label>
-
-          <input type="radio" id="carer" name="certType" value="Carer's Leave">
-          <label for="carer">Carer’s Leave</label>
+          <input type="radio" id="sick" name="certType" value="Sick Leave" checked><label for="sick">Sick Leave</label>
+          <input type="radio" id="carer" name="certType" value="Carer's Leave"><label for="carer">Carer’s Leave</label>
         </div>
       </div>
 
       <div class="radio-section">
         <label>This leave is from *</label>
         <div class="radio-group">
-          <input type="radio" id="work" name="leaveFrom" value="Work" checked>
-          <label for="work">Work</label>
-
-          <input type="radio" id="studies" name="leaveFrom" value="Studies">
-          <label for="studies">Studies</label>
-
-          <input type="radio" id="other" name="leaveFrom" value="Other">
-          <label for="other">Other</label>
+          <input type="radio" id="work" name="leaveFrom" value="Work" checked><label for="work">Work</label>
+          <input type="radio" id="studies" name="leaveFrom" value="Studies"><label for="studies">Studies</label>
+          <input type="radio" id="other" name="leaveFrom" value="Other"><label for="other">Other</label>
         </div>
       </div>
 
@@ -180,7 +179,7 @@
       <div class="success-screen">
         <div class="success-icon">✅</div>
         <h2>Thank You!</h2>
-        <p>Your medical certificate request has been submitted.<br>You’ll receive your certificate shortly after payment confirmation.</p>
+        <p>Your medical certificate request has been submitted.<br>You’ll receive your certificate shortly after payment confirmation.Please keep your phone nearby in case one of our doctors need to clarify your details.</p>
         <button class="continue-btn" onclick="window.location.href='/'">Return Home</button>
       </div>
     </div>
