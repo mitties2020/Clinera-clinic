@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VividMedi Test</title>
+</head>
+<body>
+  <h2>Testing API</h2>
+  <button id="send">Send Test</button>
+
+  <script>
+    document.getElementById("send").addEventListener("click", () => {
+      fetch("https://vividmedi-backend.onrender.com/api/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: "Tom",
+          lastName: "Smith",
+          email: "tom@example.com",
+          reason: "Frontend test",
+          fromDate: "2025-12-25",
+          toDate: "2025-12-27"
+        })
+      })
+      .then(res => res.json())
+      .then(console.log)
+      .catch(console.error);
+    });
+  </script>
+</body>
+</html>
