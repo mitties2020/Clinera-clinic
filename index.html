@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VividMedi | Medical Certificate Request</title>
 
-  <!-- ✅ Global site tag (gtag.js) - Google Ads -->
+  <!-- ✅ Google Ads -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17835460692"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -21,19 +21,8 @@
     .header{text-align:center;margin-bottom:25px;}
     .brand{font-size:2.2rem;font-weight:600;color:#111;}
     .brand span{color:#4AA7FF;}
-    .tagline{
-      margin-top:8px;
-      font-size:.95rem;
-      color:#111;
-      font-weight:500;
-      line-height:1.4;
-    }
-    .tagline span{
-      display:block;
-      color:#555;
-      font-weight:400;
-      font-size:.9rem;
-    }
+    .tagline{margin-top:8px;font-size:.95rem;color:#111;font-weight:500;line-height:1.4;}
+    .tagline span{display:block;color:#555;font-weight:400;font-size:.9rem;}
     .progress-wrapper{width:100%;max-width:600px;background:#e0e0e0;border-radius:10px;height:8px;margin:20px auto 30px;overflow:hidden;}
     .progress-bar{height:8px;width:12.5%;background:linear-gradient(to right,#4AA7FF,#7BE8D9);transition:width .4s ease;}
     .form-container{background:#fff;width:100%;max-width:600px;padding:35px;border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,.1);}
@@ -43,56 +32,17 @@
     .form-section.active{display:block;}
     @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
     label{display:block;margin:10px 0 5px;font-weight:500;}
-    .radio-section{margin-bottom:25px;}
-    .radio-group{
-      display:grid;
-      grid-template-columns:auto 1fr;
-      row-gap:10px;
-      column-gap:8px;
-      align-items:center;
-      margin-bottom:20px;
-    }
-    .radio-group input[type=radio]{accent-color:#4AA7FF;transform:scale(1.2);}
-    .radio-group label{margin:0;font-weight:400;}
     input,select,textarea{width:100%;padding:10px;border:1px solid #ccc;border-radius:6px;font-size:1rem;}
     textarea{resize:vertical;min-height:80px;}
     .button-row{display:flex;justify-content:space-between;gap:10px;margin-top:25px;}
     button{flex:1;padding:14px;border:none;border-radius:6px;font-weight:600;font-size:1rem;color:#fff;cursor:pointer;}
     .continue-btn{background:linear-gradient(to right,#4AA7FF,#7BE8D9);}
     .back-btn{background:#9daab3;}
-    .certificate-preview{background:#fffaf3;border:1px solid #e1d3b8;border-radius:10px;padding:20px;margin-bottom:20px;}
     small.note{display:block;text-align:center;margin-top:15px;color:#666;font-size:.9rem;}
     .success-screen{text-align:center;padding:30px;}
     .success-icon{font-size:4rem;color:#00b67a;margin-bottom:15px;}
 
-    /* ✅ Trust badges */
-    .guarantees{
-      margin:25px 0 0;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      flex-wrap:wrap;
-      gap:12px;
-      text-align:center;
-    }
-    .guarantee-item{
-      flex:1 1 30%;
-      min-width:150px;
-      background:#f5fff7;
-      border:1px solid #cdeed3;
-      border-radius:8px;
-      padding:12px 8px;
-      color:#00b67a;
-      font-size:.9rem;
-      font-weight:500;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:5px;
-      height:60px;
-    }
-
-    /* ✅ Stylish payment button */
+    /* ✅ Payment buttons */
     .payment-btn {
       background: linear-gradient(to right, #007BFF, #4AA7FF);
       color: white;
@@ -111,7 +61,7 @@
       transform: scale(1.02);
     }
 
-    /* ✅ Small verify button (bottom-right corner) */
+    /* ✅ Verify button */
     .verify-corner {
       position: fixed;
       bottom: 15px;
@@ -133,7 +83,7 @@
       box-shadow: 0 3px 8px rgba(0,0,0,0.15);
     }
 
-    /* ✅ Support footer */
+    /* ✅ Footer */
     #support-footer {
       position: fixed;
       bottom: 0;
@@ -148,19 +98,14 @@
       z-index: 1000;
       box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
     }
-
     #support-footer a {
       color: #4AA7FF;
       font-weight: 500;
       text-decoration: none;
-      margin-left: 4px;
-    }
-
-    #support-footer a:hover {
-      text-decoration: underline;
     }
   </style>
 </head>
+
 <body>
   <div class="header">
     <h1 class="brand">Vivid<span>Medi</span></h1>
@@ -172,11 +117,7 @@
   </div>
 
   <div class="form-container">
-
-    <!-- STEP 1–7 (unchanged) -->
-    <!-- ✅ Keep your existing Step 1–7 code here -->
-
-    <!-- ✅ STEP 8 (Embedded Payment Section with Success Message) -->
+    <!-- ✅ Replace only Step 8 -->
     <div class="form-section">
       <h2>Payment</h2>
       <p>Select your certificate duration to complete the request.</p>
@@ -196,42 +137,27 @@
       </div>
 
       <div id="squareFrameContainer" style="display:none;margin-top:25px;">
-        <iframe id="squareCheckoutFrame" src="" frameborder="0" style="width:100%;height:800px;border:none;border-radius:8px;"></iframe>
+        <iframe id="squareCheckoutFrame" src="" frameborder="0"
+          style="width:100%;height:800px;border:none;border-radius:8px;"></iframe>
+
+        <!-- hidden success box -->
         <div id="paymentSuccessMessage" style="display:none;text-align:center;margin-top:20px;">
           <h3 style="color:#00b67a;">✅ Payment Successful!</h3>
-          <p>Your payment has been processed. Your medical certificate will be sent shortly.<br>
-          Please contact us at <a href="mailto:support@vividmedi.com">support@vividmedi.com</a> for any questions.</p>
+          <p>Your payment has been confirmed.<br>
+          You’ll receive your medical certificate shortly.<br>
+          For any questions please contact us at
+          <a href="mailto:support@vividmedi.com">support@vividmedi.com</a>.</p>
         </div>
       </div>
-
-      <small class="note">
-        Your information will now be reviewed by an AHPRA-registered medical doctor.<br>
-        Please keep your phone nearby in case we need to clarify any details.
-      </small>
 
       <div class="button-row">
         <button class="back-btn">Back</button>
       </div>
     </div>
-
-    <!-- ✅ STEP 9 (Thank You Page, cleaned) -->
-    <div class="form-section">
-      <div class="success-screen">
-        <div class="success-icon">✅</div>
-        <h2>Thank You!</h2>
-        <p>
-          Your medical certificate request has been submitted.<br>
-          You’ll receive your certificate shortly after payment confirmation.<br>
-          Please contact us at <a href="mailto:support@vividmedi.com">support@vividmedi.com</a> for any questions.
-        </p>
-      </div>
-    </div>
   </div>
 
-  <!-- ✅ Floating Verify link -->
   <a href="verify.html" class="verify-corner">🔍 Verify a Medical Certificate</a>
 
-  <!-- ✅ Support Footer -->
   <div id="support-footer">
     💬 Need help? Contact our team at
     <a href="mailto:support@vividmedi.com">support@vividmedi.com</a>
@@ -239,7 +165,7 @@
 
   <script src="vividmedi-flow.js"></script>
 
-  <!-- ✅ Conversion Tracking + Payment Success Display -->
+  <!-- ✅ Payment embed logic -->
   <script>
     document.querySelectorAll(".payment-btn").forEach(btn => {
       btn.addEventListener("click", () => {
@@ -247,24 +173,29 @@
         const frameContainer = document.getElementById("squareFrameContainer");
         const frame = document.getElementById("squareCheckoutFrame");
         const selection = document.getElementById("paymentSelection");
+        const successBox = document.getElementById("paymentSuccessMessage");
 
         selection.style.display = "none";
         frameContainer.style.display = "block";
+        successBox.style.display = "none";
         frame.src = link;
 
-        // ✅ Log Google Ads conversion
+        // ✅ log Google Ads conversion on click
         gtag('event', 'conversion', {
           'send_to': 'AW-17835460692/uSVzCMLemtgbENSQzrhC',
           'value': 1.0,
           'currency': 'AUD'
         });
-
-        // ✅ Show success message after checkout loads (mock timing)
-        setTimeout(() => {
-          document.getElementById("paymentSuccessMessage").style.display = "block";
-        }, 8000); // show after 8 seconds (simulate checkout complete)
       });
+    });
+
+    // optional: show success only when returning from Square (mock placeholder)
+    window.addEventListener("message", e => {
+      if (e.data === "payment_success") {
+        document.getElementById("paymentSuccessMessage").style.display = "block";
+      }
     });
   </script>
 </body>
 </html>
+
