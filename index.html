@@ -117,70 +117,92 @@
   </div>
 
   <div class="form-container">
-    <!-- ✅ Replace only Step 8 -->
+    <!-- STEP 1 -->
+    <div class="form-section active">
+      <h2>Medical Certificate Request</h2>
+      <p>Please note: Our Medical Doctors are currently unable to review requests for fitness for work certificates as part of your consultation outcome.</p>
+      <div class="button-row"><button class="continue-btn">Continue</button></div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="form-section">
+      <h2>Reason for Leave</h2>
+      <p>Tell your doctor why you need this certificate.</p>
+      <div class="button-row"><button class="back-btn">Back</button><button class="continue-btn">Continue</button></div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="form-section">
+      <h2>Personal Information</h2>
+      <p>Enter your details below.</p>
+      <div class="button-row"><button class="back-btn">Back</button><button class="continue-btn">Continue</button></div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="form-section">
+      <h2>Address</h2>
+      <div class="button-row"><button class="back-btn">Back</button><button class="continue-btn">Continue</button></div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="form-section">
+      <h2>Leave Dates</h2>
+      <div class="button-row"><button class="back-btn">Back</button><button class="continue-btn">Continue</button></div>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="form-section">
+      <h2>Tell Your Doctor More</h2>
+      <div class="button-row"><button class="back-btn">Back</button><button class="continue-btn">Continue</button></div>
+    </div>
+
+    <!-- STEP 7 -->
+    <div class="form-section">
+      <h2>Review Your Details</h2>
+      <div class="button-row"><button class="back-btn">Back</button><button class="continue-btn">Continue</button></div>
+    </div>
+
+    <!-- STEP 8 -->
     <div class="form-section">
       <h2>Payment</h2>
       <p>Select your certificate duration to complete the request.</p>
-
-      <div id="paymentSelection">
-        <div class="payment-options">
-          <button class="payment-btn" data-link="https://square.link/u/IBwqrJ9s">1 Day — $15 AUD</button>
-          <button class="payment-btn" data-link="https://square.link/u/zAcyPAgn">2 Days — $20 AUD</button>
-          <button class="payment-btn" data-link="https://square.link/u/Yy0UMSHl">3 Days — $25 AUD</button>
-          <button class="payment-btn" data-link="https://square.link/u/cbKV3pjR">4 Days — $35 AUD</button>
-          <button class="payment-btn" data-link="https://square.link/u/aEwqH1pl">5 Days — $50 AUD</button>
-        </div>
-        <small class="note">
-          Once you select your option, the secure checkout will appear below.<br>
-          Please do not close or refresh the page while payment is processing.
-        </small>
+      <div class="payment-options">
+        <button class="payment-btn" data-link="https://square.link/u/IBwqrJ9s">1 Day — $15 AUD</button>
+        <button class="payment-btn" data-link="https://square.link/u/zAcyPAgn">2 Days — $20 AUD</button>
+        <button class="payment-btn" data-link="https://square.link/u/Yy0UMSHl">3 Days — $25 AUD</button>
+        <button class="payment-btn" data-link="https://square.link/u/cbKV3pjR">4 Days — $35 AUD</button>
+        <button class="payment-btn" data-link="https://square.link/u/aEwqH1pl">5 Days — $50 AUD</button>
       </div>
-
       <div id="squareFrameContainer" style="display:none;margin-top:25px;">
-        <iframe id="squareCheckoutFrame" src="" frameborder="0"
-          style="width:100%;height:800px;border:none;border-radius:8px;"></iframe>
-
-        <!-- hidden success box -->
-        <div id="paymentSuccessMessage" style="display:none;text-align:center;margin-top:20px;">
-          <h3 style="color:#00b67a;">✅ Payment Successful!</h3>
-          <p>Your payment has been confirmed.<br>
-          You’ll receive your medical certificate shortly.<br>
-          For any questions please contact us at
-          <a href="mailto:support@vividmedi.com">support@vividmedi.com</a>.</p>
-        </div>
+        <iframe id="squareCheckoutFrame" src="" frameborder="0" style="width:100%;height:800px;border:none;border-radius:8px;"></iframe>
       </div>
-
-      <div class="button-row">
-        <button class="back-btn">Back</button>
-      </div>
+      <div class="button-row"><button class="back-btn">Back</button></div>
     </div>
   </div>
 
   <a href="verify.html" class="verify-corner">🔍 Verify a Medical Certificate</a>
 
   <div id="support-footer">
-    💬 Need help? Contact our team at
-    <a href="mailto:support@vividmedi.com">support@vividmedi.com</a>
+    💬 Need help? Contact our team at <a href="mailto:support@vividmedi.com">support@vividmedi.com</a>
   </div>
 
   <script src="vividmedi-flow.js"></script>
 
-  <!-- ✅ Payment embed logic -->
   <script>
+    // ✅ Always start at Step 1
+    window.addEventListener("DOMContentLoaded", () => {
+      const sections = document.querySelectorAll(".form-section");
+      sections.forEach((s, i) => s.classList.toggle("active", i === 0));
+    });
+
+    // ✅ Payment embed logic
     document.querySelectorAll(".payment-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         const link = btn.dataset.link;
         const frameContainer = document.getElementById("squareFrameContainer");
         const frame = document.getElementById("squareCheckoutFrame");
-        const selection = document.getElementById("paymentSelection");
-        const successBox = document.getElementById("paymentSuccessMessage");
-
-        selection.style.display = "none";
         frameContainer.style.display = "block";
-        successBox.style.display = "none";
         frame.src = link;
-
-        // ✅ log Google Ads conversion on click
         gtag('event', 'conversion', {
           'send_to': 'AW-17835460692/uSVzCMLemtgbENSQzrhC',
           'value': 1.0,
@@ -188,14 +210,6 @@
         });
       });
     });
-
-    // optional: show success only when returning from Square (mock placeholder)
-    window.addEventListener("message", e => {
-      if (e.data === "payment_success") {
-        document.getElementById("paymentSuccessMessage").style.display = "block";
-      }
-    });
   </script>
 </body>
 </html>
-
