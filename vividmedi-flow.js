@@ -1,4 +1,4 @@
-// vividmedi-flow.js — stable step flow + submit on Review (Step 7)
+// vividmedi-flow.js — stable step flow + submit on Review (Step 7) + never-stuck submit
 console.log("✅ vividmedi-flow.js loaded");
 
 const sections = document.querySelectorAll(".form-section");
@@ -24,13 +24,16 @@ overlay.style.cssText = `
   align-items: center;
   justify-content: center;
   font-size: 1.1rem;
+  color: #111;
   z-index: 9999;
+  text-align: center;
+  padding: 20px;
 `;
-overlay.textContent = "Submitting…";
+overlay.textContent = "Working…";
 document.body.appendChild(overlay);
 
 function showOverlay(msg) {
-  overlay.textContent = msg || "Submitting…";
+  overlay.textContent = msg || "Working…";
   overlay.style.display = "flex";
 }
 function hideOverlay() {
@@ -41,7 +44,7 @@ function hideOverlay() {
    Helpers
 --------------------------------*/
 function getActiveIndex() {
-  return Array.from(sections).findIndex(s => s.classList.contains("active"));
+  return Array.from(sections).findIndex((s) => s.classList.contains("active"));
 }
 
 function showSection(index) {
@@ -53,6 +56,20 @@ function showSection(index) {
 
 // init
 showSection(0);
+
+/* ------------------------------
+   Optional: show/hide “Other” field
+--------------------------------*/
+function updateOtherLeaveField() {
+  const otherRadio = document.getElementById("other");
+  const field = document.getElementById("otherLeaveField");
+  if (!otherRadio || !field) return;
+  field.style.display = otherRadio.checked ? "block" : "none";
+}
+document.querySelectorAll("input[name='leaveFrom']").forEach((r) => {
+  r.addEventListener("change", updateOtherLeaveField);
+});
+updateOtherLeaveField();
 
 /* ------------------------------
    Payload
@@ -81,12 +98,24 @@ function buildPayload() {
 }
 
 function missingRequired(p) {
-  const req = ["email","firstName","lastName","dob","mobile","address","city","state","postcode","fromDate","toDate"];
-  return req.filter(k => !p[k]);
+  const req = [
+    "email",
+    "firstName",
+    "lastName",
+    "dob",
+    "mobile",
+    "address",
+    "city",
+    "state",
+    "postcode",
+    "fromDate",
+    "toDate",
+  ];
+  return req.filter((k) => !p[k]);
 }
 
 /* ------------------------------
-   Submit
+   Submit (with timeout + always hides overlay)
 --------------------------------*/
 async function submitPatientInfo() {
   if (submissionSent) return submissionResponse;
@@ -95,33 +124,57 @@ async function submitPatientInfo() {
   const missing = missingRequired(payload);
   if (missing.length) {
     alert("Please complete all required fields.");
-    throw new Error("Missing fields");
+    throw new Error("Missing fields: " + missing.join(", "));
   }
 
   showOverlay("Submitting your details…");
 
-  const res = await fetch(SUBMIT_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
+  // hard timeout so you never get stuck
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 15000); // 15s
 
-  const data = await res.json().catch(() => ({}));
-  hideOverlay();
+  try {
+    const res = await fetch(SUBMIT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      signal: controller.signal,
+    });
 
-  if (!res.ok || !data.success) {
-    throw new Error("Submission failed");
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok || !data?.success) {
+      console.error("❌ Submit failed:", res.status, data);
+      alert("❌ Submission failed. Please try again.");
+      throw new Error("Submission failed");
+    }
+
+    submissionSent = true;
+    submissionResponse = data;
+
+    console.log("✅ Submission success:", data);
+    return data;
+  } catch (err) {
+    console.error("❌ Submit error:", err);
+
+    if (err.name === "AbortError") {
+      alert("⚠️ Submission timed out. Please click Continue again.");
+    } else {
+      alert("❌ Could not submit details. Please try again.");
+    }
+    throw err;
+  } finally {
+    clearTimeout(timeoutId);
+    hideOverlay();
   }
-
-  submissionSent = true;
-  submissionResponse = data;
-  return data;
 }
 
 /* ------------------------------
    Continue buttons
+   - Always advance
+   - On Review step (contains #certificatePreview), submit BEFORE advancing
 --------------------------------*/
-continueButtons.forEach(btn => {
+continueButtons.forEach((btn) => {
   btn.addEventListener("click", async () => {
     const idx = getActiveIndex();
     if (idx === -1) return;
@@ -132,7 +185,7 @@ continueButtons.forEach(btn => {
       try {
         await submitPatientInfo();
       } catch {
-        return; // stay on review if submit fails
+        return; // don't advance if submit failed/timed out
       }
     }
 
@@ -145,7 +198,7 @@ continueButtons.forEach(btn => {
 /* ------------------------------
    Back buttons
 --------------------------------*/
-backButtons.forEach(btn => {
+backButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
     const idx = getActiveIndex();
     if (idx > 0) showSection(idx - 1);
@@ -153,23 +206,27 @@ backButtons.forEach(btn => {
 });
 
 /* ------------------------------
-   Payment buttons
+   Payment buttons (Square)
 --------------------------------*/
 const squareFrameContainer = document.getElementById("squareFrameContainer");
 const squareCheckoutFrame = document.getElementById("squareCheckoutFrame");
 
-paymentButtons.forEach(btn => {
-  btn.addEventListener("click", e => {
+paymentButtons.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
     e.preventDefault();
+
     const link = btn.getAttribute("data-link");
     if (!link) return;
 
+    // embed if iframe exists
     if (squareFrameContainer && squareCheckoutFrame) {
       squareCheckoutFrame.src = link;
       squareFrameContainer.style.display = "block";
-      squareFrameContainer.scrollIntoView({ behavior: "smooth" });
-    } else {
-      window.open(link, "_blank", "noopener");
+      squareFrameContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
     }
+
+    // otherwise open new tab
+    window.open(link, "_blank", "noopener,noreferrer");
   });
 });
