@@ -1,3 +1,18 @@
-git add render.yaml
-git commit -m "Add render.yaml"
-git push
+# Exported from Render on 2025-12-29T14:43:01Z
+version: "1"
+services:
+- type: web
+  name: vividmedi
+  runtime: static
+  repo: https://github.com/mitties2020/vividmedi
+  staticPublishPath: ./
+  domains:
+  - vividmedi.com
+  - www.vividmedi.com
+  routes:
+  - type: redirect
+    source: /*
+    destination: vividmedi.com/:splat
+  autoDeployTrigger: commit
+  previews:
+    generation: automatic
