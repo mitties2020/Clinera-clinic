@@ -247,19 +247,40 @@
     </div>
 
     <!-- STEP 8 -->
-    <div class="form-section">
-      <h2>Payment</h2>
-      <p>Select your certificate duration to complete the request.</p>
-      <div class="payment-options">
-        <a href="https://square.link/u/IBwqrJ9s" target="_blank" class="payment-option"><span>1 Day</span><strong>$15 AUD</strong></a>
-        <a href="https://square.link/u/zAcyPAgn" target="_blank" class="payment-option"><span>2 Days</span><strong>$20 AUD</strong></a>
-        <a href="https://square.link/u/Yy0UMSHl" target="_blank" class="payment-option"><span>3 Days</span><strong>$25 AUD</strong></a>
-        <a href="https://square.link/u/cbKV3pjR" target="_blank" class="payment-option"><span>4 Days</span><strong>$35 AUD</strong></a>
-        <a href="https://square.link/u/aEwqH1pl" target="_blank" class="payment-option"><span>5 Days</span><strong>$50 AUD</strong></a>
-      </div>
-      <small class="note">Your information will now be reviewed by an AHPRA-registered medical doctor. Please keep your phone nearby in case we need to clarify any details.</small>
-      <div class="button-row"><button class="back-btn">Back</button><button class="continue-btn" id="submitBtn">Submit</button></div>
+<div class="form-section">
+  <h2>Payment</h2>
+  <p>Select your certificate duration to complete the request.</p>
+
+  <!-- Embedded Payment Section -->
+  <div id="paymentSelection">
+    <div class="payment-options">
+      <button class="payment-btn" data-link="https://square.link/u/IBwqrJ9s">1 Day — $15 AUD</button>
+      <button class="payment-btn" data-link="https://square.link/u/zAcyPAgn">2 Days — $20 AUD</button>
+      <button class="payment-btn" data-link="https://square.link/u/Yy0UMSHl">3 Days — $25 AUD</button>
+      <button class="payment-btn" data-link="https://square.link/u/cbKV3pjR">4 Days — $35 AUD</button>
+      <button class="payment-btn" data-link="https://square.link/u/aEwqH1pl">5 Days — $50 AUD</button>
     </div>
+    <small class="note">
+      Once you select your option, the secure checkout will appear below.  
+      Please do not close or refresh the page while payment is processing.
+    </small>
+  </div>
+
+  <!-- Embedded Checkout Frame -->
+  <div id="squareFrameContainer" style="display:none;margin-top:25px;">
+    <iframe id="squareCheckoutFrame" src="" frameborder="0" style="width:100%;height:800px;border:none;border-radius:8px;"></iframe>
+  </div>
+
+  <small class="note">
+    Your information will now be reviewed by an AHPRA-registered medical doctor.  
+    Please keep your phone nearby in case we need to clarify any details.
+  </small>
+
+  <div class="button-row">
+    <button class="back-btn">Back</button>
+  </div>
+</div>
+
 
 <!-- STEP 9 --> 
  <div class="form-section"> 
