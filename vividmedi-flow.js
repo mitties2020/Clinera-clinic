@@ -84,7 +84,33 @@ updateOtherLeaveField();
 // ------------------------------
 // Build payload (THIS is what your backend receives)
 // ------------------------------
-function buildPayload() {
+function buildPayload()// ------------------------------
+// Submit patient info ONCE (logs to Render, no email, no delay)
+// ------------------------------
+function submitPatientInfoOnce() {
+  if (submissionSent) return;
+  submissionSent = true;
+
+  const payload = buildPayload();
+
+  // Fire-and-forget: do NOT block payment
+  fetch(SUBMIT_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      submissionResponse = data;
+      console.log("📩 Submitted to backend:", data);
+    })
+    .catch((err) => {
+      console.error("❌ submitPatientInfoOnce failed:", err);
+      // allow retry if needed
+      submissionSent = false;
+    });
+}
+{
   return {
     certType: document.querySelector("input[name='certType']:checked")?.value || "",
     leaveFrom: document.querySelector("input[name='leaveFrom']:checked")?.value || "",
